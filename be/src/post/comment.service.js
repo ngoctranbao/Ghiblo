@@ -1,6 +1,6 @@
 import { Injectable, Inject } from '@nestjs/common';
 import "firebase/firestore";
-import { getFirestore, setDoc, doc } from "firebase/firestore";
+import { getFirestore, addDoc, collection, getDocs } from "firebase/firestore";
 
 
 @Injectable()
@@ -9,40 +9,60 @@ class CommentService {
     this.db = getFirestore(app)
   }
 
-  async addComment(postId, userId, content) {
-    const commentRef = await addDoc(collection(this.firebaseService.firestore, 'posts', postId, 'comments'), {
-      userId,
-      content,
-      createdAt: new Date()
-    });
-    return commentRef.id;
+  async addComment(data) {
+    try {      
+      const commentRef = await addDoc(collection(this.db, 'Post', data.postId, 'Comment'), {
+        userId: data.userId,
+        content: data.content,
+        createdAt: new Date()
+      });
+      return commentRef.id;
+    } catch (error) {
+      console.error("Error Add Comment service: ", error.message);
+      throw error; // Re-throw the error to handle it in the controller
+    }
   }
 
-  async addReply(postId, commentId, userId, content) {
-    const replyRef = await addDoc(collection(this.firebaseService.firestore, 'posts', postId, 'comments', commentId, 'replies'), {
-      userId,
-      content,
-      createdAt: new Date()
-    });
-    return replyRef.id;
+  async addReply(data) {
+    try {
+      const replyRef = await addDoc(collection(this.db, 'Post', data.postId, 'Comment', data.commentId, 'Reply'), {
+        userId : data.userId,
+        content: data.content,
+        createdAt: new Date()
+      });
+      return replyRef.id; 
+    } catch (error) {
+      console.error("Error Add Reply service: ", error.message);
+      throw error; // Re-throw the error to handle it in the controller
+    }
   }
 
   async getComments(postId) {
-    const commentsSnapshot = await getDocs(collection(this.firebaseService.firestore, 'posts', postId, 'comments'));
-    const comments = [];
-    commentsSnapshot.forEach((doc) => {
-      comments.push({ id: doc.id, ...doc.data() });
-    });
-    return comments;
+    try {
+      const commentsSnapshot = await getDocs(collection(this.db, 'Post', postId, 'Comment'));
+      const comments = [];
+      commentsSnapshot.forEach((document) => {
+        comments.push({ id: document.id, ...document.data() });
+      });
+      return comments;
+    } catch (error) {
+      console.error("Error get Comment service: ", error.message);
+      throw error; // Re-throw the error to handle it in the controller
+    }
   }
 
-  async getReplies(postId, commentId) {
-    const repliesSnapshot = await getDocs(collection(this.firebaseService.firestore, 'posts', postId, 'comments', commentId, 'replies'));
-    const replies = [];
-    repliesSnapshot.forEach((doc) => {
-      replies.push({ id: doc.id, ...doc.data() });
-    });
-    return replies;
+  async getReplies(data) {
+    try {
+      const repliesSnapshot = await getDocs(collection(this.db, 'Post', data.postId, 'Comment', data.commentId, 'Reply'));
+      const replies = [];
+      repliesSnapshot.forEach((documnet) => {
+        replies.push({ id: documnet.id, ...documnet.data() });
+      });
+      return replies;
+    } catch (error) {
+      console.error("Error get Reply service: ", error.message);
+      throw error; // Re-throw the error to handle it in the controller
+    }
   }
 
 
