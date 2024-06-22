@@ -1,4 +1,3 @@
-// src/cats/cats.service.js
 import { Injectable, Inject } from '@nestjs/common';
 import "firebase/firestore";
 import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth";
@@ -39,9 +38,12 @@ class AuthService {
   async createUserFirestore(data) {
     try {
       const user = await setDoc(doc(this.db, "User", `${data.userId}`), {
+        userId: data.userId,
         userName: data.userName,
         email: data.email,
-        loginned: true
+        loginned: true,
+        countFollowers: 0,
+        countFollowing: 0,
       });
       return user
     } catch (e) {

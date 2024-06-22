@@ -1,4 +1,3 @@
-// src/cats/cats.controller.js
 const { Controller, Get, Post, Body, Req, Res } = require('@nestjs/common');
 const { AuthService } = require('./auth.service').default;
 
