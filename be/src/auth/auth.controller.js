@@ -14,7 +14,7 @@ class AuthControllers {
       const data = await this.authService.login(request);
       return response
         .status(200)
-        .json({message: "Login successfully", data: data});
+        .json({message: "Login successfully", user: data});
     } catch (error) {
       console.log(error);
       return response
@@ -46,7 +46,7 @@ class AuthControllers {
       const status = await this.authService.logout(request);
       return response
         .status(200)
-        .json({ message: "Sign up successfully", data: user });
+        .json({ message: "Sign up successfully", data: status });
     } catch (error) {
       return response.status(400).json({ message: error.message });
     }  }

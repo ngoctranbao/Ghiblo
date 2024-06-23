@@ -1,6 +1,6 @@
 import React, { useState, useContext, useEffect } from "react";
 import { useParams } from 'react-router-dom';
-import { Card, Row, Col, Typography, Space  } from "antd";
+import { Card, Row, Col, Typography, Space ,Button } from "antd";
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 import { CaretUpOutlined, CaretDownOutlined } from "@ant-design/icons";
@@ -18,6 +18,8 @@ const Post = () =>{
   const [post, setPost] = useState();
   const [vote, setVote] = useState();
   const { id } = useParams();
+
+  const navigate = useNavigate()
 
 
   const fetchPost = async(projectId) => {
@@ -44,16 +46,9 @@ const Post = () =>{
     }
   }
 
-  const createPost = async(values) => {
-    try {
-      const res = await createPost(values);
-      if (res.status === 200) {
-        await fetchPost(res.data);
-      }
-    } catch (error) {
-      console.log(error);
-    }
-  }
+  const navigateToCreatePost = () => {
+    navigate("/posts/create")
+    };
 
   useEffect(() => {
     if (id != null) {
@@ -63,6 +58,9 @@ const Post = () =>{
 
   return (
     <div style={{ marginBottom: 20 }}>
+      <Button type="primary" onClick={navigateToCreatePost}>
+        Create Post
+      </Button>
       <Title level={2}>{post?.title}</Title>
       <Paragraph>{post?.description}</Paragraph>
       <Space>

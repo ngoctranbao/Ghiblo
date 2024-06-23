@@ -1,24 +1,32 @@
 import logo from './logo.svg';
+import { HashRouter } from "react-router-dom";
+import { ToastContainer } from "react-toastify";
 import './App.css';
+import Guest from './pages';
+import Login from './pages/auth/Login';
+import { AuthContext } from './providers/authProvider';
+import { useContext } from "react";
+
+// import LayoutAuth from './pages/auth/LayoutAuth';
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+  const { authUser } = useContext(AuthContext)
+
+  return ( 
+    <HashRouter>
+      {authUser ? <Guest /> : <Login/>}
+      <Guest/>
+    <ToastContainer
+      position="top-right"
+      autoClose={2000}
+      newestOnTop={true}
+      closeOnClick
+      pauseOnHover={false}
+      pauseOnFocusLoss={false}
+      draggable
+      style={{ textAlign: "left" }}
+    />
+  </HashRouter>
   );
 }
 

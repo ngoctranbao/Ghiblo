@@ -100,6 +100,22 @@ class FollowService {
       throw error; // Re-throw the error to handle it in the controller
     }
   }
+
+  async isFollow(data) {
+    try {
+      const followingRef = doc(collection(this.db, 'User', data.userId, 'Followers',data.currentId));
+      const followingSnap = await getDoc(followingRef);
+  
+      if (followingSnap.exists()) {
+        return true;
+      } else {
+        return false;
+      }
+    } catch (error) {
+      console.error("Error get following detail service: ", error.message);
+      throw error; // Re-throw the error to handle it in the controller
+    }
+  }
 }
 
 export default { FollowService };

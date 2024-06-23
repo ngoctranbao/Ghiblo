@@ -107,7 +107,7 @@ const Login = () => {
           <Row>
             <Col>
               <Row>Bạn chưa có tài khoản</Row>
-              {/* <Row>
+              <Row>
                 <Col>Đăng ký</Col>
                 <Col
                   className={"navigate-auth"}
@@ -117,7 +117,7 @@ const Login = () => {
                 >
                   Tại đây
                 </Col>
-              </Row> */}
+              </Row>
             </Col>
           </Row>
         </Col>

@@ -48,7 +48,7 @@ class PostService {
     querySnapshot.forEach((document) => {
       const data = document.data();
       posts.push({
-        id: data.id,
+        id: document.id,
         title: data.title,
         tags: data.tags,
         ownerId: data.ownerId

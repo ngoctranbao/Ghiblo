@@ -46,10 +46,12 @@ const CommentComponent = ({postId}) =>{
     if (newComment.trim() === '') {
       return; // Prevent adding empty comments
     }
+
+    console.log(`${authUser.uid} && ${newComment}`)
     await handlecreateComment( {
       postId: postId,
       userId: authUser.uid,
-      description: newComment,
+      content: newComment,
     });
 
     // setComments([...comments, newCommentObject]); // Add new comment to the list

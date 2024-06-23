@@ -54,10 +54,6 @@ class AuthService {
   async logout(data) {
     return `This action allow logout with ${data}`
   }
-
-  getHello() {
-    return `${this.db.toJSON}`
-  }
 }
 
 export default { AuthService };

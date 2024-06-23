@@ -96,6 +96,22 @@ class FollowControllers {
           .json({ message: [{ field: "error", message: `Failed to get following details ${error.message}` }] });
     }
   }
+
+  @Get('isFollow')
+  async isFollow(@Body() request, @Res() response) {
+    try {
+      const isFollow = await this.followService.isFollow(request);
+      return response
+        .status(200)
+        .json({message: "Get following success", data: isFollow === true ? true : false})
+    } catch (error) {
+      console.log(error);
+        return response
+          .status(400)
+          .json({ message: [{ field: "error", message: `Failed to get following details ${error.message}` }] });
+    }
+  }
+
 }
 
 module.exports = { FollowControllers };

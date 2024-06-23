@@ -1,0 +1,55 @@
+.login {
+    padding: 0 var(--margin-side);
+    padding-top: 38px;
+  
+    .background-banner-container {
+      position: relative;
+      justify-content: end;
+  
+      .background-banner-image {
+        background-image: url("../../public/images/background-banner-login.jpeg");
+        background-repeat: no-repeat;
+        background-position: center center;
+        padding-left: 200;
+      }
+    }
+    .image-banner-login {
+      width: 698px;
+      position: absolute;
+      background-image: url("../../public/images/banner-side-login.png");
+      background-repeat: no-repeat;
+      background-position: center center;
+      top: 0;
+      right: 0;
+    }
+  
+    .form-auth {
+      background-color: white;
+    }
+  
+    .ant-form-item {
+      margin-bottom: 12px;
+    }
+  
+    .wrap-form-item {
+      .ant-form-item {
+        margin-bottom: 0;
+      }
+    }
+  }
+  .navigate-auth {
+    padding-left: 4px;
+    color: rgb(0, 106, 255);
+  }
+  .navigate-auth:hover {
+    cursor: pointer;
+  }
+  
+  .forgot-password {
+    color: blue;
+  }
+  .forgot-password:hover {
+    cursor: pointer;
+    color: rgb(0, 106, 255);
+  }
+  
