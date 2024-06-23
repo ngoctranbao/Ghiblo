@@ -1,7 +1,3 @@
-Chắc chắn rồi. Đây là phiên bản tiếng Việt của README:
-
----
-
 # Ghiblo
 
 ## Mục Lục
