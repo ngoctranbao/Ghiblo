@@ -20,8 +20,16 @@
 ## Giới Thiệu
 Tài liệu này cung cấp cái nhìn tổng quan về kiến trúc sản xuất cho Ghiblo. Nó bao gồm các thành phần hệ thống, luồng dữ liệu, quy trình triển khai, giám sát, ghi nhật ký, khả năng mở rộng, hiệu suất, các biện pháp bảo mật, và các thực hành phát triển và kiểm thử.
 
-**Lưu ý:** Do kỳ thi cuối kỳ, dự án này đã được hoàn thành trong thời gian ngắn gọn là 2,5 ngày. Mặc dù nó chưa hoàn thiện hoàn toàn, em mong muốn cải thiện nó trong tương lai và biết ơn sự thông cảm.
+Cách chạy:
+`cd be`
+`npm run start`
 
+mở 1 cmd mới
+
+`cd fe`
+`npm start`
+
+link demo: https://drive.google.com/file/d/1w7hfHuBAf1sp1DgM25_ONVRhV1bL7f3a/view?usp=sharing
 ## Tổng Quan Kiến Trúc
 ### Các Thành Phần Hệ Thống
 Các thành phần chính của hệ thống bao gồm:
